@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Отчёты — Электронный журнал{% endblock %}
+{% block content %}
+<div class="page-heading"><h1>Отчёты</h1></div>
+<p id="status" class="status" role="status" aria-live="polite" hidden></p>
+<div class="toolbar">
+  <label>Вид отчёта
+    <select id="report-kind">
+      <option value="groups">Показатели групп</option>
+      <option value="no_grades">Студенты без оценок</option>
+      <option value="failing">Студенты с двойками</option>
+    </select>
+  </label>
+</div>
+<div class="table-scroll">
+  <table>
+    <thead><tr id="table-head"></tr></thead>
+    <tbody id="table-body"></tbody>
+  </table>
+</div>
+{% endblock %}
+{% block scripts %}<script type="module" src="{{ url_for('reports.static', filename='reports.js') }}"></script>{% endblock %}

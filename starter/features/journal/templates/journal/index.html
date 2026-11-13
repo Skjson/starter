@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Журнал — Электронный журнал{% endblock %}
+{% block content %}
+<div class="page-heading"><h1>Журнал</h1></div>
+<p id="status" class="status" role="status" aria-live="polite" hidden></p>
+<div class="toolbar">
+  <label>Группа<select id="journal-group"></select></label>
+</div>
+<section id="editor" class="editor" aria-labelledby="editor-title" hidden>
+  <h2 id="editor-title">Итоговая оценка</h2>
+  <p id="grade-context"></p>
+  <form id="edit-form">
+    <div class="form-fields">
+      <label>Оценка
+        <select id="grade-mark" required>
+          <option value="">Выберите оценку</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </label>
+    </div>
+    <div class="button-row">
+      <button class="button-primary" type="submit">Сохранить</button>
+      <button id="delete-grade" class="button-danger" type="button">Удалить оценку</button>
+      <button id="cancel-edit" type="button">Отмена</button>
+    </div>
+  </form>
+</section>
+<div class="table-scroll">
+  <table class="journal-table">
+    <thead><tr id="table-head"><th scope="col">Студент</th></tr></thead>
+    <tbody id="table-body"></tbody>
+  </table>
+</div>
+{% endblock %}
+{% block scripts %}<script type="module" src="{{ url_for('journal.static', filename='journal.js') }}"></script>{% endblock %}

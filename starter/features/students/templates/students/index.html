@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Студенты — Электронный журнал{% endblock %}
+{% block content %}
+<div class="page-heading">
+  <h1>Студенты</h1>
+  <button id="add-record" class="button-primary" type="button">Добавить студента</button>
+</div>
+<p id="status" class="status" role="status" aria-live="polite" hidden></p>
+<div class="toolbar">
+  <label>Поиск по имени<input id="student-search" type="search"></label>
+  <label>Группа<select id="group-filter"></select></label>
+</div>
+<section id="editor" class="editor" aria-labelledby="editor-title" hidden>
+  <h2 id="editor-title">Студент</h2>
+  <form id="edit-form">
+    <input id="record-id" type="hidden">
+    <div class="form-fields">
+      <label>ФИО<input id="record-name" type="text" maxlength="50" required></label>
+      <label>Группа<select id="record-group" required></select></label>
+      <label>Email (необязательно)<input id="record-email" type="email"></label>
+    </div>
+    <div class="button-row">
+      <button class="button-primary" type="submit">Сохранить</button>
+      <button id="cancel-edit" type="button">Отмена</button>
+    </div>
+  </form>
+</section>
+<section id="confirmation" class="confirmation" aria-label="Подтверждение удаления" hidden>
+  <p id="confirmation-text"></p>
+  <div class="button-row">
+    <button id="confirm-delete" class="button-danger" type="button">Удалить</button>
+    <button id="cancel-delete" type="button">Отмена</button>
+  </div>
+</section>
+<div class="table-scroll">
+  <table class="students-table">
+    <thead><tr><th>ФИО</th><th>Группа</th><th>Email</th><th>Действия</th></tr></thead>
+    <tbody id="table-body"></tbody>
+  </table>
+</div>
+{% endblock %}
+{% block scripts %}<script type="module" src="{{ url_for('students.static', filename='students.js') }}"></script>{% endblock %}
